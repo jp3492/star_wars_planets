@@ -17,6 +17,4 @@ if (process.env.NODE_ENV === 'production') {
 const port = process.env.PORT || 3090
 const server = http.createServer(app)
 
-router(app)
-
 server.listen(port, () => console.log('Server listening on:', port))
