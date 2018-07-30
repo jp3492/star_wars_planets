@@ -1,0 +1,293 @@
+:root {
+  --primary: #FFC107;
+  --primary-dark: #FFA000;
+  --secondary: #448AFF;
+  --light: #FFECB3;
+  --light-grey: #BDBDBD;
+  --text: #212121;
+  --text-light: #757575;
+  --radius: 3px;
+  --padding: 10px;
+  --shadow: 0 1px 3px rgba(0,0,0,0.16), 0 1px 3px rgba(0,0,0,0.23);
+}
+html, body, #root, #wrapper {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  font-family: Roboto;
+}
+ul {
+  border-radius: var(--radius);
+  padding: 0 !important;
+  margin: 0 !important;
+}
+h3 {
+  margin: 0 !important;
+}
+#wrapper {
+  display: grid;
+  grid-template-columns: auto 1000px auto;
+  grid-template-rows: 60px auto;
+  grid-column-gap: 15px;
+  grid-template-areas:
+   "header header header"
+   ". body ."
+}
+#header {
+  grid-area: header;
+  text-align: center;
+  background-color: var(--primary);
+  line-height: 60px;
+  position: fixed;
+  width: 100%;
+  box-shadow:  0 1px 7px rgba(0,0,0,0.16), 0 1px 3px rgba(0,0,0,0.23);
+}
+#header > input {
+  width: 970px;
+  height: 40px;
+  border-radius: var(--radius);
+  padding-left: var(--padding);
+  font-size: 18px;
+  color: var(--text);
+}
+#item {
+  grid-area: body;
+  display: grid;
+  grid-template-columns: 350px 650px;
+  grid-template-rows: 60px auto;
+  grid-column-gap: 15px;
+  grid-template-areas:
+   "planetHeader residentsHeader"
+   "info residents"
+}
+#movies {
+  grid-area: movies;
+}
+#item > div {
+}
+#item > div > h3 {
+  padding: 0 !important;
+  padding-left: var(--padding) !important;
+  margin: 0 !important;
+}
+#item > div > h3 > a {
+  color: var(--primary-dark) !important;
+}
+#item > div:nth-child(1){
+  grid-area: planetHeader;
+  line-height: 60px;
+  font-weight: bold;
+  font-size: 18px;
+  position: fixed;
+  top: 60px;
+}
+#item > div:nth-child(2){
+  position: fixed;
+  top: 120px;
+  width: 330px;
+  margin-left: var(--padding);
+  margin-right: var(--padding);
+  grid-area: info;
+}
+#item > div:nth-child(2) > ul {
+  padding: 0 !important;
+  box-shadow: var(--shadow);
+}
+#item > div:nth-child(2) > ul > li {
+  list-style-type: none !important;
+  height: 20px;
+  line-height: 20px;
+  padding: var(--padding);
+  display: flex;
+  flex-direction: row;
+}
+#item > div:nth-child(2) > ul > li > a {
+  flex: 1;
+}
+#item > div:nth-child(2) > ul > li > a:nth-child(2) {
+  text-align: right;
+}
+.resident {
+  margin-bottom: var(--padding) !important;
+  box-shadow: var(--shadow) !important;
+  cursor: pointer;
+}
+.resident:hover {
+  background-color: var(--light-grey) !important;
+  color: white !important;
+}
+.resident:hover h3 {
+  color: var(--primary) !important;
+}
+.resident > li {
+  list-style-type: none !important;
+  height: 20px;
+  line-height: 20px;
+  padding: var(--padding);
+  display: flex;
+  flex-direction: row;
+}
+.resident > li > a {
+  flex: 1;
+}
+.resident > li > a:nth-child(2) {
+  text-align: right;
+}
+#item > div:nth-child(4){
+  grid-area: residents;
+}
+#item > div:nth-child(4) > ul {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+#item > div:nth-child(4) > ul > li {
+  list-style-type: none !important;
+  width: 296px;
+  padding: var(--padding);
+  padding-top: 0 !important;
+}
+#list {
+  display: fixed;
+  grid-area: body;
+  display: flex;
+  flex-direction: column;
+  margin: 0 !important;
+}
+#list > li {
+  list-style-type: none !important;
+  border-radius: var(--radius);
+  height: 80px;
+  line-height: 80px;
+  padding: var(--padding);
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 15px;
+}
+#list > li > a {
+  font-size: 18px;
+  color: var(--text);
+}
+#list > li:nth-child(even) {
+  background-color: var(--secondary);
+}
+#list > li:nth-child(even) > a {
+  color: white !important;
+}
+#list > li:nth-child(odd) {
+  background-color: var(--light-grey);
+}
+#listHeader {
+  margin: 0 !important;
+  height: 40px !important;
+  line-height: 40px !important;
+  background-color: transparent !important;
+}
+#list > li:nth-child(1) > a {
+  width: 25%;
+  font-weight: bold;
+  font-size: 22px;
+  color: var(--text-light);
+}
+.planet {
+  cursor: pointer;
+}
+.planet > a {
+  width: 25%;
+}
+.planet:hover {
+  box-shadow: var(--shadow);
+}
+#residentsHeader {
+  grid-area: residentsHeader;
+  padding-left: var(--padding);
+  line-height: 60px;
+  padding-left: 20px !important;
+}
+#listFooter {
+  height: 40px !important;
+  line-height: 40px !important;
+  display: flex;
+  flex-direction: row;
+  background-color: var(--primary-dark) !important;
+  color: white !important;
+}
+#listFooter > a {
+  flex: 1 !important;
+  text-align: center !important;
+  color: white !important;
+}
+#listFooter > div {
+  display: flex;
+  flex-direction: row;
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+.clickable:active {
+  background-color: var(--primary) !important;
+}
+#listFooter > div > a {
+  text-align: center !important;
+}
+#listFooter > div > i {
+  line-height: 43px;
+  width: 50px;
+  text-align: center;
+}
+#listFooter > div > a {
+  height: 40px;
+  width: 100px;
+  padding-left: var(--padding);
+  padding-right: var(--padding);
+}
+#loading {
+  grid-area: body;
+  text-align: center;
+  margin-top: 50px;
+}
+#loading > div {
+  display: inline-block;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  margin-left: 420px;
+  margin-right: 420px;
+  border-top: 15px solid var(--primary);
+  border-bottom: 15px solid var(--primary);
+  border-right: 15px solid var(--secondary);
+  border-left: 15px solid var(--secondary);
+  width: 100px;
+  height: 100px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+#loading > a {
+  font-size: 24px;
+  color: var(--text);
+}
+#disabledSearch {
+  color: var(--light-grey) !important;
+}
+.infoheader {
+  background-color: var(--secondary) !important;
+  border-top-left-radius: var(--radius);
+  border-top-right-radius: var(--radius);
+  color: white !important;
+}
+.films {
+  cursor: pointer;
+}
+.films:hover {
+  color: white !important;
+  background-color: var(--light-grey);
+}
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

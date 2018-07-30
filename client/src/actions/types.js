@@ -1,0 +1,5 @@
+export const GET_PLANETS = 'get_planets'
+export const GET_RESIDENTS = 'get_residents'
+export const PAGE = 'page'
+export const SEARCH = 'search'
+export const SELECT_PLANET = 'select_planet'
