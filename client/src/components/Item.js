@@ -18,7 +18,9 @@ class Item extends Component{
   }
   renderInfo(i) {
     const { selectedPlanet } = this.props
-    const info = (i.includes('_') === true) ? i.split('_').map( inf => { return inf.charAt(0).toUpperCase() + inf.slice(1) }).join(' '): i.charAt(0).toUpperCase() + i.slice(1)
+    const info = (i.includes('_') === true) ?
+      i.split('_').map( inf => { return inf.charAt(0).toUpperCase() + inf.slice(1) }).join(' '):
+      i.charAt(0).toUpperCase() + i.slice(1)
     return (
       <li key={i}>
         <a>{info}</a>
@@ -30,16 +32,29 @@ class Item extends Component{
     const key = Object.keys(r).filter( i => { return ['birth_year', 'eye_color', 'gender', 'height', 'mass'].includes(i) === true })
     const keys = key.reduce((res, k) => {
       if (k.includes('_') === true) {
-        return { ...res, [k]: k.split('_').map( inf => { return inf.charAt(0).toUpperCase() + inf.slice(1) }).join(' ') }
+        return { ...res, [k]: k.split('_').map( inf => {
+          return inf.charAt(0).toUpperCase() + inf.slice(1) }).join(' ')
+        }
       }
       return { ...res, [k]: k }
     }, {})
-    const infos = key.map( k => { return { key: keys[k].charAt(0).toUpperCase() + keys[k].slice(1), value: r[k] } })
+    const infos = key.map( k => {
+      return { key: keys[k].charAt(0).toUpperCase() + keys[k].slice(1), value: r[k]
+    }})
     return (
       <li key={r}>
         <ul className='resident'>
-          <li className="infoheader"><h3>{r.name}</h3></li>
-          {infos.map( i => { return <li><a>{i.key}</a><a>{i.value}</a></li> } )}
+          <li className="infoheader">
+            <h3>{r.name}</h3>
+          </li>
+          {infos.map( i => {
+            return (
+              <li>
+                <a>{i.key}</a>
+                <a>{i.value}</a>
+              </li>
+            )
+          })}
         </ul>
       </li>
     )
@@ -55,28 +70,53 @@ class Item extends Component{
   }
   render(){
     const { selectedPlanet, residents, films } = this.props
-    if (selectedPlanet === null) { return null }
+    if (selectedPlanet === null) {
+      return null
+    }
     const { name } = selectedPlanet[0]
     const filmNumbers = selectedPlanet[0].films.map( f => { return f.split('/')[5] })
     const inFilms = filmNumbers.map( n => { return films[n-1] })
     const infos = Object.keys(selectedPlanet[0]).filter( i => { return ['name', 'created', 'edited', 'residents', 'url', 'films'].includes(i) === false })
     return (
       <div id="item">
-        <div><h3><Link style={{ textDecoration: 'none' }} to="/">{'Planets '+'>'+' '}</Link>{name}</h3></div>
+        <div>
+          <h3>
+            <Link style={{ textDecoration: 'none' }} to="/">
+              {'Planets '+'>'+' '}
+            </Link>
+            {name}
+          </h3>
+        </div>
         <div>
           <ul>
-            <li className="infoheader"><h3>Information</h3></li>
-            {infos.map( i => { return this.renderInfo(i) } )}
-            <li className="infoheader"><h3>Movie appearance</h3></li>
-            {inFilms.map( f => { return this.renderFilm(f) } )}
+            <li className="infoheader">
+              <h3>Information</h3>
+            </li>
+            {infos.map( i => {
+              return this.renderInfo(i)
+            })}
+            <li className="infoheader">
+              <h3>Movie appearance</h3>
+            </li>
+            {inFilms.sort((a, b) => {
+              return new Date(a.release_date) > new Date(b.release_date) })
+              .map( f => {
+                return this.renderFilm(f)
+              })}
           </ul>
         </div>
         <h3 id="residentsHeader">Famous Residents</h3>
         <div>
           {(residents.length === 0) ?
-            <ul><li>No famous residents on this planet!</li></ul>:
             <ul>
-              {(residents === 'load') ? 'Loading Residents...': residents.map( r => { return this.renderResident(r) } )}
+              <li>No famous residents on this planet!</li>
+            </ul>:
+            <ul>
+              {(residents === 'load') ?
+                'Loading Residents...':
+                residents.map( r => {
+                  return this.renderResident(r)
+                })}
             </ul>
           }
         </div>
